@@ -3,235 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MITRE ATLAS Infographics</title>
+    <title>MITRE ATLAS™ Infographics</title>
     <style>
         :root {
-            --bg-color: #f1f5f9;
-            --card-bg: #ffffff;
-            --header-bg: #1e293b;
-            --text-main: #334155;
-            --accent-indigo: #4f46e5;
-            --link-hover: #4338ca;
-            --border-light: #e2e8f0;
-            --tag-bg: #f8fafc;
+            --primary-blue: #005b94;
+            --header-dark: #1a202c;
+            --bg-light: #f7fafc;
+            --border-color: #e2e8f0;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 40px 20px;
-            line-height: 1.5;
+            padding: 0;
+            overflow: hidden; 
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-light);
         }
 
         .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 0;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
-        .intro-section {
-            padding: 30px;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        h1 {
-            margin: 0 0 15px 0;
-            color: var(--header-bg);
-            font-size: 2rem;
-        }
-
-        /* Improved Link Styling */
-        .atlas-link {
-            color: var(--accent-indigo);
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .atlas-link:hover {
-            color: var(--link-hover);
-            border-bottom-color: var(--link-hover);
-        }
-
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            min-width: 1100px;
-        }
-
-        th {
-            background-color: var(--header-bg);
-            color: white;
-            padding: 20px 15px;
-            text-align: left;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            vertical-align: top;
-        }
-
-        th a {
-            color: #cbd5e1; /* Lighter slate for header links */
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        th a:hover {
-            color: white;
-        }
-
-        td {
-            padding: 15px;
-            border: 1px solid var(--border-light);
-            vertical-align: top;
-            background-color: white;
-        }
-
-        .technique-item {
-            display: block;
-            background: var(--tag-bg);
-            border: 1px solid var(--border-light);
-            padding: 8px 12px;
+        .intro {
+            flex-shrink: 0;
             margin-bottom: 8px;
-            border-radius: 6px;
+        }
+
+        h1 { color: var(--primary-blue); margin: 0; font-size: clamp(1.2rem, 2vw, 1.8rem); }
+        
+        .atlas-link {
+            color: var(--primary-blue);
+            font-weight: bold;
+            text-decoration: none;
             font-size: 0.85rem;
-            color: var(--text-main);
-            transition: transform 0.1s ease;
         }
 
-        .technique-item:hover {
-            transform: translateX(4px);
-            border-color: var(--accent-indigo);
+        .matrix-wrapper {
+            flex-grow: 1;
+            background: white;
+            border: 1px solid var(--border-color);
+            display: flex;
+            overflow: hidden; 
+            border-radius: 4px;
         }
 
-        .badge {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--accent-indigo);
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            margin-top: 5px;
+        .matrix-grid {
+            display: flex;
+            width: 100%;
+            /* Responsive font size that scales with width */
+            font-size: clamp(5px, 0.75vw, 12px); 
+        }
+
+        .tactic-column {
+            flex: 1 1 0;
+            min-width: 0; /* Critical for flex shrinking */
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .tactic-column:last-child { border-right: none; }
+
+        /* FIXED HEADER: Now uses padding-box sizing and word-break logic */
+        .tactic-header {
+            background: var(--header-dark);
+            color: white;
+            padding: 8px 4px;
+            text-align: center;
+            font-weight: bold;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            overflow: hidden;
+            /* Prevents letter cut-off by allowing words to wrap or break */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            box-sizing: border-box;
+        }
+
+        .tactic-header a {
+            color: #63b3ed;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            font-size: 1em; /* Inherits from grid scaling */
+        }
+
+        .technique-list {
+            padding: 4px;
+            overflow-y: auto;
+            flex-grow: 1;
+            background: #ffffff;
+        }
+
+        .technique-card {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            margin-bottom: 4px;
+            padding: 4px;
+            border-radius: 2px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            border-left: 3px solid var(--primary-blue);
         }
 
         footer {
-            padding: 20px;
-            background: #f8fafc;
+            flex-shrink: 0;
+            padding: 5px;
+            font-size: 0.65rem;
+            color: #718096;
             text-align: center;
-            font-size: 0.8rem;
-            color: #64748b;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="intro-section">
+    <div class="intro">
         <h1>MITRE ATLAS™ Infographics</h1>
         <p>
-            The MITRE ATLAS Matrix is a knowledge base of adversary tactics and techniques based on real-world observations of attacks against AI systems. 
-            You can explore the full interactive documentation at the 
+            The MITRE ATLAS™ Matrix is a knowledge base of adversary tactics and techniques based on real-world observations of attacks against AI systems. 
+            <br/>You can explore the full interactive documentation at the 
             <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank" class="atlas-link">Official MITRE ATLAS Portal</a>.
-            Click on the links below for an Infographic explaining the adversary tactics and techniques for a particular category.
-        </p>
+            <br/>Click on any category below for an Infographic explaining the adversarial tactics and techniques for the selected category.
+        </p>        
     </div>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Reconnaissance & Resource Dev</a>
-                        <span class="badge">8 Techniques</span>
-                    </th>
-                    <th>
-                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Initial Access</a>
-                        <span class="badge">7 Techniques</span>
-                    </th>
-                    <th>
-                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">ML Model Access</a>
-                        <span class="badge">4 Techniques</span>
-                    </th>
-                    <th>
-                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Execution & Persistence</a>
-                        <span class="badge">5 Techniques</span>
-                    </th>
-                    <th>
-                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Command & Control</a>
-                        <span class="badge">8 Techniques</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="technique-item">Active Scanning</div>
-                        <div class="technique-item">Gather RAG-Indexed Targets</div>
-                        <div class="technique-item">Gather Victim Identity</div>
-                        <div class="technique-item">Search Application Repositories</div>
-                        <div class="technique-item">Search Open AI Vulnerabilities</div>
-                        <div class="technique-item">Acquire Infrastructure</div>
-                        <div class="technique-item">Acquire AI Artifacts</div>
-                    </td>
-                    <td>
-                        <div class="technique-item">AI Supply Chain Compromise</div>
-                        <div class="technique-item">Drive-by Compromise</div>
-                        <div class="technique-item">Exploit Public Application</div>
-                        <div class="technique-item">Phishing</div>
-                        <div class="technique-item">Prompt Infiltration</div>
-                        <div class="technique-item">Valid Accounts</div>
-                    </td>
-                    <td>
-                        <div class="technique-item">Model Inference API Access</div>
-                        <div class="technique-item">AI Product/Service Access</div>
-                        <div class="technique-item">Full AI Model Access</div>
-                        <div class="technique-item">Evade AI Model</div>
-                    </td>
-                    <td>
-                        <div class="technique-item">AI Agent Clickbait</div>
-                        <div class="technique-item">AI Agent Tool Invocation</div>
-                        <div class="technique-item">LLM Prompt Injection</div>
-                        <div class="technique-item">Modify Agent Config</div>
-                        <div class="technique-item">User Execution</div>
-                    </td>
-                    <td>
-                        <div class="technique-item">AI Agent Context Poisoning</div>
-                        <div class="technique-item">LLM Prompt Crafting</div>
-                        <div class="technique-item">Poison Training Data</div>
-                        <div class="technique-item">Publish Hallucinated Entities</div>
-                        <div class="technique-item">RAG Poisoning</div>
-                        <div class="technique-item">Retrieval Content Crafting</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="matrix-wrapper">
+        <div class="matrix-grid" id="main-grid">
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Reconnaissance & Resource Development</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Supply Chain Compromise</div>
+                    <div class="technique-card">Phishing</div>
+                    <div class="technique-card">AI Model Inference API Access</div>
+                    <div class="technique-card">LLM Prompt Injection</div>     
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Initial Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Supply Chain Compromise</div>
+                    <div class="technique-card">Phishing</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">ML Model Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Model Inference API Access</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Execution & Persistence</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Command & Control</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Reconnaissance & Resource Development</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Initial Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Supply Chain Compromise</div>
+                    <div class="technique-card">Phishing</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">ML Model Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Model Inference API Access</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Execution & Persistence</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Command & Control</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Reconnaissance & Resource Development</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Initial Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Supply Chain Compromise</div>
+                    <div class="technique-card">Phishing</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">ML Model Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Model Inference API Access</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Execution & Persistence</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Command & Control</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Reconnaissance & Resource Development</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">Active Scanning</div>
+                    <div class="technique-card">Gather RAG-Indexed Targets</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Initial Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Supply Chain Compromise</div>
+                    <div class="technique-card">Phishing</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">ML Model Access</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Model Inference API Access</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Execution & Persistence</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">LLM Prompt Injection</div>
+                </div>
+            </div>
+
+            <div class="tactic-column">
+                <div class="tactic-header"><a href="https://atlas.mitre.org/matrices/ATLAS">Command & Control</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">AI Agent Context Poisoning</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <footer>
-        &copy; The MITRE Corporation. Self-contained reference based on ATLAS Matrix documentation.
+        &copy; The MITRE Corporation. Content based on ATLAS Matrix documentation.
     </footer>
 </div>
 
 <script>
-    // Visual feedback for interactions
-    document.querySelectorAll('.technique-item').forEach(item => {
-        item.style.cursor = 'default';
-    });
+    /**
+     * Adds dynamic columns to test scaling.
+     * The font-size for headers and cards will adjust based on total count.
+     */
+    function addColumns(count) {
+        const grid = document.getElementById('main-grid');
+        for(let i = 0; i < count; i++) {
+            const col = document.createElement('div');
+            col.className = 'tactic-column';
+            col.innerHTML = `
+                <div class="tactic-header"><a href="#">Scaling Tactic Name ${i+1}</a></div>
+                <div class="technique-list">
+                    <div class="technique-card">Dynamic Card Content ${i+1}</div>
+                </div>
+            `;
+            grid.appendChild(col);
+        }
+        
+        // Dynamic global font scaling based on column density
+        const total = grid.children.length;
+        if (total > 5) {
+            const newSize = Math.max(4, 12 - (total * 0.5));
+            grid.style.fontSize = newSize + 'px';
+        }
+    }
 </script>
 
 </body>
