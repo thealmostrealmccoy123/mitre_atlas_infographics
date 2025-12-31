@@ -1,6 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITRE ATLAS Infographics</title>
+    <style>
+        :root {
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --header-bg: #1e293b;
+            --text-main: #334155;
+            --accent-indigo: #4f46e5;
+            --link-hover: #4338ca;
+            --border-light: #e2e8f0;
+            --tag-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .intro-section {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        h1 {
+            margin: 0 0 15px 0;
+            color: var(--header-bg);
+            font-size: 2rem;
+        }
+
+        /* Improved Link Styling */
+        .atlas-link {
+            color: var(--accent-indigo);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .atlas-link:hover {
+            color: var(--link-hover);
+            border-bottom-color: var(--link-hover);
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            min-width: 1100px;
+        }
+
+        th {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            vertical-align: top;
+        }
+
+        th a {
+            color: #cbd5e1; /* Lighter slate for header links */
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        th a:hover {
+            color: white;
+        }
+
+        td {
+            padding: 15px;
+            border: 1px solid var(--border-light);
+            vertical-align: top;
+            background-color: white;
+        }
+
+        .technique-item {
+            display: block;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-light);
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            transition: transform 0.1s ease;
+        }
+
+        .technique-item:hover {
+            transform: translateX(4px);
+            border-color: var(--accent-indigo);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--accent-indigo);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-top: 5px;
+        }
+
+        footer {
+            padding: 20px;
+            background: #f8fafc;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+    </style>
+</head>
 <body>
-  <h1>This Space for Rent</h1>
+
+<div class="container">
+    <div class="intro-section">
+        <h1>MITRE ATLAS™ Infographics</h1>
+        <p>
+            The MITRE ATLAS Matrix is a knowledge base of adversary tactics and techniques based on real-world observations of attacks against AI systems. 
+            You can explore the full interactive documentation at the 
+            <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank" class="atlas-link">Official MITRE ATLAS Portal</a>.
+            Click on the links below for an Infographic explaining the adversary tactics and techniques for a particular category.
+        </p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Reconnaissance & Resource Dev</a>
+                        <span class="badge">8 Techniques</span>
+                    </th>
+                    <th>
+                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Initial Access</a>
+                        <span class="badge">7 Techniques</span>
+                    </th>
+                    <th>
+                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">ML Model Access</a>
+                        <span class="badge">4 Techniques</span>
+                    </th>
+                    <th>
+                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Execution & Persistence</a>
+                        <span class="badge">5 Techniques</span>
+                    </th>
+                    <th>
+                        <a href="https://atlas.mitre.org/matrices/ATLAS" target="_blank">Command & Control</a>
+                        <span class="badge">8 Techniques</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="technique-item">Active Scanning</div>
+                        <div class="technique-item">Gather RAG-Indexed Targets</div>
+                        <div class="technique-item">Gather Victim Identity</div>
+                        <div class="technique-item">Search Application Repositories</div>
+                        <div class="technique-item">Search Open AI Vulnerabilities</div>
+                        <div class="technique-item">Acquire Infrastructure</div>
+                        <div class="technique-item">Acquire AI Artifacts</div>
+                    </td>
+                    <td>
+                        <div class="technique-item">AI Supply Chain Compromise</div>
+                        <div class="technique-item">Drive-by Compromise</div>
+                        <div class="technique-item">Exploit Public Application</div>
+                        <div class="technique-item">Phishing</div>
+                        <div class="technique-item">Prompt Infiltration</div>
+                        <div class="technique-item">Valid Accounts</div>
+                    </td>
+                    <td>
+                        <div class="technique-item">Model Inference API Access</div>
+                        <div class="technique-item">AI Product/Service Access</div>
+                        <div class="technique-item">Full AI Model Access</div>
+                        <div class="technique-item">Evade AI Model</div>
+                    </td>
+                    <td>
+                        <div class="technique-item">AI Agent Clickbait</div>
+                        <div class="technique-item">AI Agent Tool Invocation</div>
+                        <div class="technique-item">LLM Prompt Injection</div>
+                        <div class="technique-item">Modify Agent Config</div>
+                        <div class="technique-item">User Execution</div>
+                    </td>
+                    <td>
+                        <div class="technique-item">AI Agent Context Poisoning</div>
+                        <div class="technique-item">LLM Prompt Crafting</div>
+                        <div class="technique-item">Poison Training Data</div>
+                        <div class="technique-item">Publish Hallucinated Entities</div>
+                        <div class="technique-item">RAG Poisoning</div>
+                        <div class="technique-item">Retrieval Content Crafting</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        &copy; The MITRE Corporation. Self-contained reference based on ATLAS Matrix documentation.
+    </footer>
+</div>
+
+<script>
+    // Visual feedback for interactions
+    document.querySelectorAll('.technique-item').forEach(item => {
+        item.style.cursor = 'default';
+    });
+</script>
+
 </body>
 </html>
