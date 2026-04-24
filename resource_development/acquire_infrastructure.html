@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acquire Infrastructure Resource Development Overview</title>
-<style>
+    <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
@@ -71,6 +71,35 @@
         .reference-link:hover {
             text-decoration: underline;
         }
+        .video-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+        }
+        .video-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 4px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -92,7 +121,7 @@
     <!-- 2.1. Section to hold the 3 sentence summary -->
     <section class="summary-section">
         <p>
-            The Acquire Infrastructure tactic involves adversaries buying, leasing, or renting various resources ranging from cloud servers and domains to serverless functions to establish a functional environment for staging and executing their operations. By utilizing these solutions, attackers can effectively blend into legitimate network traffic, bypass security measures like Content Security Policies, and maintain a flexible operational footprint that is difficult for defenders to attribute to a specific acto. This tactic also extends to acquiring specialized components for AI-focused attacks, such as physical countermeasures like adversarial stickers to disrupt sensors and AI development workspaces for the high-compute staging of exploits. This process is like a spy renting a nondescript apartment and buying local clothes; it provides the necessary "home base" and disguise to operate effectively within a target environment without drawing unwanted attention.
+            The Acquire Infrastructure tactic involves adversaries buying, leasing, or renting various resources ranging from cloud servers and domains to serverless functions to establish a functional environment for staging and executing their operations. By utilizing these solutions, attackers can effectively blend into legitimate network traffic, bypass security measures like Content Security Policies, and maintain a flexible operational footprint that is difficult for defenders to attribute to a specific actor. This tactic also extends to acquiring specialized components for AI-focused attacks, such as physical countermeasures like adversarial stickers to disrupt sensors and AI development workspaces for the high-compute staging of exploits. This process is like a spy renting a nondescript apartment and buying local clothes; it provides the necessary home base and disguise to operate effectively within a target environment without drawing unwanted attention.
         </p>
     </section>
 
@@ -106,6 +135,19 @@
 
     <section class="infographic-section">
         <img src="acquire_infrastructure_infographics.png" alt="Anatomy of an AI Attack: Google Bard Heist" class="infographic-image">
+    </section>
+
+    <!-- 2.4. Section to embed a YouTube video -->
+    <section class="video-section">
+        <h2>Related Video</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/_poQJrTe8rE?rel=0&modestbranding=1"
+                    title="Acquire Infrastructure Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+            </iframe>
+        </div>
     </section>
 </div>
 
