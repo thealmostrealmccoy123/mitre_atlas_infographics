@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Alternate Authentication Material Overview</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f4f7f9;
+        }
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            margin: 0 20px 40px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .summary-section {
+            margin-bottom: 30px;
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+        }
+        .infographic-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+        }
+        .infographic-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+        .reference-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .reference-link:hover {
+            text-decoration: underline;
+        }
+        .video-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+        }
+        .video-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 4px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 0 10px 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Link to Home Page -->
+<nav>
+    <a href="../index.html">← Back</a>
+</nav>
+
+<div class="container">
+    <h1>Use Alternate Authentication Material</h1>
+
+    <!-- 2.1. Section to hold the 3 sentence summary -->
+    <section class="summary-section">
+        <p>
+            The Use Alternate Authentication Material technique, categorized under the Lateral Movement tactic, involves adversaries utilizing stolen authentication assets—such as password hashes, Kerberos tickets, or application access tokens—to bypass normal system access controls. Because AI services and AI-as-a-Service platforms frequently rely on these tokens for user queries and API requests, attackers can exploit them to make authorized requests on behalf of a compromised user or service without needing traditional login credentials. By successfully applying this technique, adversaries can stealthily pivot through the network to compromise critical AI infrastructure, such as model registries and vector databases, or take control of AI agents that possess elevated system permissions.
+        </p>
+    </section>
+
+    <!-- 2.2. Reference link to original source -->
+    <p>For more details, visit the <a href="https://atlas.mitre.org/techniques/AML.T0091" class="reference-link" target="_blank">official MITRE ATLAS page ↗</a></p>
+
+    <!-- 2.3. Section to embed an infographic image -->
+    <section class="infographic-section">
+        <img src="use_alternate_authentication_material_infographics_2.png" alt="Token Compromise" class="infographic-image">
+    </section>
+
+    <section class="infographic-section">
+        <img src="use_alternate_authentication_material_infographics.png" alt="The Threat of Stolen Authentication in AI Environments" class="infographic-image">
+    </section>
+
+    <!-- 2.4. Section to embed a YouTube video -->
+    <section class="video-section">
+        <h2>Related Video</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/c8ZtqvfrSO4?rel=0&modestbranding=1"
+                    title="Use Alternate Authentication Material Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </section>    
+</div>
+
+</body>
+</html>
